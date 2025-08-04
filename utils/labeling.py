@@ -39,7 +39,7 @@ def find_nearest_patch_centers(click_x, click_y, patch_centers, threshold_val):
     return nearby_centers, nearby_indices
 
 
-def labeling_session(raw_depth_clean, patch_centers, default_threshold=10, logger=None):
+def labeling_session(raw_depth_clean, patch_centers, default_threshold=10, logger=None, color_image_path=None):
     """
     Conducts a labeling session to select good and bad grasp patches from depth image.
     
@@ -48,7 +48,7 @@ def labeling_session(raw_depth_clean, patch_centers, default_threshold=10, logge
         patch_centers (list): List of (x, y) coordinates for all patches.
         default_threshold (int): Default threshold for selecting nearby patches.
         logger (DataLabelingLogger, optional): Logger instance for recording session details.
-    
+        color_image_path (Path, optional): Path to a color image for visualization.
     Returns:
         good_patch_center (list): List of (x, y) coordinates for good grasp locations.
         bad_patch_center (list): List of (x, y) coordinates for bad grasp locations.
@@ -161,13 +161,24 @@ def labeling_session(raw_depth_clean, patch_centers, default_threshold=10, logge
                     else:
                         print(f"Removed {removed_count} good grasp(s) near ({x}, {y})")
     
-    # Convert depth image to display format (0-255)
-    display_depth = ((raw_depth_clean - raw_depth_clean.min()) / 
-                    (raw_depth_clean.max() - raw_depth_clean.min()) * 255).astype(np.uint8)
-    
-    # Convert to BGR for opencv display
-    display_img = cv2.applyColorMap(display_depth, cv2.COLORMAP_VIRIDIS)
-    
+    # Load and prepare color image if provided
+    if color_image_path and color_image_path.exists():
+        import cv2
+        color_img = cv2.imread(str(color_image_path))
+        #color_img = cv2.cvtColor(color_img, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
+        display_img = color_img
+        if logger:
+            logger.log_info(f"Using color image as background: {color_image_path}")
+    else:
+        # Fall back to depth visualization
+        display_depth = ((raw_depth_clean - raw_depth_clean.min()) / 
+                        (raw_depth_clean.max() - raw_depth_clean.min()) * 255).astype(np.uint8)
+        display_img = cv2.applyColorMap(display_depth, cv2.COLORMAP_VIRIDIS)
+        if logger:
+            logger.log_info("Using depth image visualization as background")
+
+
+
     if logger:
         logger.log_info("=== STAGE 1: Object Detection ===")
     else:

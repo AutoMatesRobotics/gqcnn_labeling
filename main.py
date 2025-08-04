@@ -49,6 +49,7 @@ def main():
             if folder.is_dir():
                 depth_file_path = folder / "depth_0.npy"
                 camera_intr_path = folder / "zivid.intr"
+                color_file_path = folder / "color_0.png"
                 
                 # Check if required files exist
                 if depth_file_path.exists() and camera_intr_path.exists():
@@ -81,7 +82,7 @@ def main():
                         
                         labeling_start_time = time.time()
                         good_patch_centers, bad_patch_centers = labeling_session(
-                            raw_depth_clean, patch_centers, logger=logger
+                            raw_depth_clean, patch_centers, logger=logger, color_image_path=color_file_path
                         )
                         labeling_end_time = time.time()
                         
