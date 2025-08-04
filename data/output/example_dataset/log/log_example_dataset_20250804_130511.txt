@@ -1,0 +1,168 @@
+2025-08-04 13:05:11 | INFO     | ================================================================================
+2025-08-04 13:05:11 | INFO     | DATA LABELING SESSION STARTED
+2025-08-04 13:05:11 | INFO     | Dataset: example_dataset
+2025-08-04 13:05:11 | INFO     | Timestamp: 20250804_130511
+2025-08-04 13:05:11 | INFO     | Log file: data/output/example_dataset/log/log_example_dataset_20250804_130511.txt
+2025-08-04 13:05:11 | INFO     | ================================================================================
+2025-08-04 13:05:11 | INFO     | Session parameters:
+2025-08-04 13:05:11 | INFO     |   Root directory: data/input/example_captures
+2025-08-04 13:05:11 | INFO     |   Save directory: data/output/example_dataset
+2025-08-04 13:05:11 | INFO     |   Patch size: 96
+2025-08-04 13:05:11 | INFO     |   Stride: 10
+2025-08-04 13:05:11 | INFO     | Found 2 folders to process
+2025-08-04 13:05:11 | INFO     | ------------------------------------------------------------
+2025-08-04 13:05:11 | INFO     | PROCESSING CAPTURE 1: 2025-06-30_16-07-26
+2025-08-04 13:05:11 | INFO     | ------------------------------------------------------------
+2025-08-04 13:05:11 | INFO     | Depth file: data/input/example_captures/2025-06-30_16-07-26/depth_0.npy
+2025-08-04 13:05:11 | INFO     | Intrinsics file: data/input/example_captures/2025-06-30_16-07-26/zivid.intr
+2025-08-04 13:05:11 | INFO     | --- PATCH PREPARATION STAGE STARTED ---
+2025-08-04 13:05:12 | INFO     | --- Patch Preparation ---
+2025-08-04 13:05:12 | INFO     | Image shape: (600, 800, 1)
+2025-08-04 13:05:12 | INFO     | Patch size: 96x96
+2025-08-04 13:05:12 | INFO     | Stride: 10
+2025-08-04 13:05:12 | INFO     | Total patches extracted: 3621
+2025-08-04 13:05:12 | INFO     | --- Depth Preprocessing ---
+2025-08-04 13:05:12 | INFO     | Original depth range: 0.000 to 1.406
+2025-08-04 13:05:12 | INFO     | Cleaned depth range: 0.000 to 1.000
+2025-08-04 13:05:12 | INFO     | Holes filled with median filter
+2025-08-04 13:05:12 | INFO     | Outliers clipped using percentile method
+2025-08-04 13:05:12 | INFO     | --- MANUAL LABELING STAGE STARTED ---
+2025-08-04 13:05:12 | INFO     | Starting interactive labeling session...
+2025-08-04 13:05:12 | INFO     | === STAGE 1: Object Detection ===
+2025-08-04 13:05:12 | INFO     | User instructions: Draw boxes around objects, 'c' to clear, SPACE to proceed, ESC to exit
+2025-08-04 13:05:17 | INFO     | User interaction - Object Box Created: Box 1: (211,79) to (368,225), area: 22922 pixels
+2025-08-04 13:05:19 | INFO     | User interaction - Object Box Created: Box 2: (574,174) to (746,354), area: 30960 pixels
+2025-08-04 13:05:20 | INFO     | Object boxes drawn: 2
+2025-08-04 13:05:20 | INFO     | Total patches: 3621
+2025-08-04 13:05:20 | INFO     | Patches in object boxes: 530
+2025-08-04 13:05:20 | INFO     | Labeling coverage: 14.6%
+2025-08-04 13:05:20 | INFO     | === STAGE 2: Grasp Labeling ===
+2025-08-04 13:05:20 | INFO     | User instructions: Left click to select good grasps, right click to remove, ESC to finish
+2025-08-04 13:05:20 | INFO     | User interaction - Threshold Changed: New threshold: 10 pixels
+2025-08-04 13:05:21 | INFO     | User interaction - Good Grasps Added: Added 2 patches at (298, 157), total good: 2
+2025-08-04 13:05:22 | INFO     | User interaction - Good Grasps Added: Added 4 patches at (675, 272), total good: 6
+2025-08-04 13:05:23 | INFO     | === LABELING COMPLETE ===
+2025-08-04 13:05:23 | INFO     | User interaction summary:
+2025-08-04 13:05:23 | INFO     |   Total clicks: 2
+2025-08-04 13:05:23 | INFO     |   Add clicks: 2
+2025-08-04 13:05:23 | INFO     |   Remove clicks: 0
+2025-08-04 13:05:23 | INFO     |   Object boxes drawn: 2
+2025-08-04 13:05:23 | INFO     | --- Grasp Labeling Results ---
+2025-08-04 13:05:23 | INFO     | Good grasp patches: 6
+2025-08-04 13:05:23 | INFO     | Bad grasp patches: 524
+2025-08-04 13:05:23 | INFO     | Total labeled patches: 530
+2025-08-04 13:05:23 | INFO     | Good grasp percentage: 0.2%
+2025-08-04 13:05:23 | INFO     | Total patches: 3621
+2025-08-04 13:05:23 | INFO     | Patches in object boxes: 530
+2025-08-04 13:05:23 | INFO     | Labeling coverage: 14.6%
+2025-08-04 13:05:23 | INFO     | --- Grasp Labeling Results ---
+2025-08-04 13:05:23 | INFO     | Good grasp patches: 6
+2025-08-04 13:05:23 | INFO     | Bad grasp patches: 524
+2025-08-04 13:05:23 | INFO     | Total labeled patches: 530
+2025-08-04 13:05:23 | INFO     | Good grasp percentage: 0.2%
+2025-08-04 13:05:23 | INFO     | Processing time: 11.71 seconds
+2025-08-04 13:05:23 | INFO     | Processing rate: 45.3 patches/second
+2025-08-04 13:05:23 | INFO     | User interaction - Labeling Complete: Selected 6 good and 524 bad patches
+2025-08-04 13:05:23 | INFO     | Generating labeling visualization...
+2025-08-04 13:05:24 | INFO     | Plot saved to data/output/example_dataset/log/labeled_scene_2025-06-30_16-07-26.png
+2025-08-04 13:05:26 | INFO     | --- PATCH EXTRACTION STAGE STARTED ---
+2025-08-04 13:05:26 | INFO     | Extracting patches from 3621 total patches...
+2025-08-04 13:05:26 | INFO     | Good centers: 6
+2025-08-04 13:05:26 | INFO     | Bad centers: 524
+2025-08-04 13:05:26 | INFO     | Successfully extracted:
+2025-08-04 13:05:26 | INFO     |   Good patches: 6
+2025-08-04 13:05:26 | INFO     |   Bad patches: 524
+2025-08-04 13:05:26 | INFO     | --- DATASET CREATION STAGE STARTED ---
+2025-08-04 13:05:27 | INFO     | --- Dataset Creation ---
+2025-08-04 13:05:27 | INFO     | Good patches in dataset: 6
+2025-08-04 13:05:27 | INFO     | Bad patches in dataset: 524
+2025-08-04 13:05:27 | INFO     | Tensor shape: (530, 96, 96, 1)
+2025-08-04 13:05:27 | INFO     | Save directory: data/output/example_dataset
+2025-08-04 13:05:27 | INFO     | ✓ Capture 1 completed successfully
+2025-08-04 13:05:27 | INFO     |   Good patches: 6, Bad patches: 524
+2025-08-04 13:05:27 | INFO     | Processing time: 15.50 seconds
+2025-08-04 13:05:27 | INFO     | ------------------------------------------------------------
+2025-08-04 13:05:27 | INFO     | PROCESSING CAPTURE 2: 2025-06-11_20-51-12
+2025-08-04 13:05:27 | INFO     | ------------------------------------------------------------
+2025-08-04 13:05:27 | INFO     | Depth file: data/input/example_captures/2025-06-11_20-51-12/depth_0.npy
+2025-08-04 13:05:27 | INFO     | Intrinsics file: data/input/example_captures/2025-06-11_20-51-12/zivid.intr
+2025-08-04 13:05:27 | INFO     | --- PATCH PREPARATION STAGE STARTED ---
+2025-08-04 13:05:27 | INFO     | --- Patch Preparation ---
+2025-08-04 13:05:27 | INFO     | Image shape: (600, 800, 1)
+2025-08-04 13:05:27 | INFO     | Patch size: 96x96
+2025-08-04 13:05:27 | INFO     | Stride: 10
+2025-08-04 13:05:27 | INFO     | Total patches extracted: 3621
+2025-08-04 13:05:27 | INFO     | --- Depth Preprocessing ---
+2025-08-04 13:05:27 | INFO     | Original depth range: 0.000 to 1.604
+2025-08-04 13:05:27 | INFO     | Cleaned depth range: 0.000 to 1.000
+2025-08-04 13:05:27 | INFO     | Holes filled with median filter
+2025-08-04 13:05:27 | INFO     | Outliers clipped using percentile method
+2025-08-04 13:05:27 | INFO     | --- MANUAL LABELING STAGE STARTED ---
+2025-08-04 13:05:27 | INFO     | Starting interactive labeling session...
+2025-08-04 13:05:27 | INFO     | === STAGE 1: Object Detection ===
+2025-08-04 13:05:27 | INFO     | User instructions: Draw boxes around objects, 'c' to clear, SPACE to proceed, ESC to exit
+2025-08-04 13:05:29 | INFO     | User interaction - Object Box Created: Box 1: (298,239) to (399,328), area: 8989 pixels
+2025-08-04 13:05:29 | INFO     | Object boxes drawn: 1
+2025-08-04 13:05:29 | INFO     | Total patches: 3621
+2025-08-04 13:05:29 | INFO     | Patches in object boxes: 99
+2025-08-04 13:05:29 | INFO     | Labeling coverage: 2.7%
+2025-08-04 13:05:29 | INFO     | === STAGE 2: Grasp Labeling ===
+2025-08-04 13:05:29 | INFO     | User instructions: Left click to select good grasps, right click to remove, ESC to finish
+2025-08-04 13:05:29 | INFO     | User interaction - Threshold Changed: New threshold: 10 pixels
+2025-08-04 13:05:30 | INFO     | === LABELING COMPLETE ===
+2025-08-04 13:05:30 | INFO     | User interaction summary:
+2025-08-04 13:05:30 | INFO     |   Total clicks: 0
+2025-08-04 13:05:30 | INFO     |   Add clicks: 0
+2025-08-04 13:05:30 | INFO     |   Remove clicks: 0
+2025-08-04 13:05:30 | INFO     |   Object boxes drawn: 1
+2025-08-04 13:05:30 | INFO     | --- Grasp Labeling Results ---
+2025-08-04 13:05:30 | INFO     | Good grasp patches: 0
+2025-08-04 13:05:30 | INFO     | Bad grasp patches: 99
+2025-08-04 13:05:30 | INFO     | Total labeled patches: 99
+2025-08-04 13:05:30 | INFO     | Good grasp percentage: 0.0%
+2025-08-04 13:05:30 | INFO     | Total patches: 3621
+2025-08-04 13:05:30 | INFO     | Patches in object boxes: 99
+2025-08-04 13:05:30 | INFO     | Labeling coverage: 2.7%
+2025-08-04 13:05:30 | INFO     | --- Grasp Labeling Results ---
+2025-08-04 13:05:30 | INFO     | Good grasp patches: 0
+2025-08-04 13:05:30 | INFO     | Bad grasp patches: 99
+2025-08-04 13:05:30 | INFO     | Total labeled patches: 99
+2025-08-04 13:05:30 | INFO     | Good grasp percentage: 0.0%
+2025-08-04 13:05:30 | INFO     | Processing time: 3.47 seconds
+2025-08-04 13:05:30 | INFO     | Processing rate: 28.6 patches/second
+2025-08-04 13:05:30 | INFO     | User interaction - Labeling Complete: Selected 0 good and 99 bad patches
+2025-08-04 13:05:30 | INFO     | Generating labeling visualization...
+2025-08-04 13:05:31 | INFO     | Plot saved to data/output/example_dataset/log/labeled_scene_2025-06-11_20-51-12.png
+2025-08-04 13:05:32 | INFO     | --- PATCH EXTRACTION STAGE STARTED ---
+2025-08-04 13:05:32 | INFO     | Extracting patches from 3621 total patches...
+2025-08-04 13:05:32 | INFO     | Good centers: 0
+2025-08-04 13:05:32 | INFO     | Bad centers: 99
+2025-08-04 13:05:32 | INFO     | Successfully extracted:
+2025-08-04 13:05:32 | INFO     |   Good patches: 0
+2025-08-04 13:05:32 | INFO     |   Bad patches: 99
+2025-08-04 13:05:32 | INFO     | --- DATASET CREATION STAGE STARTED ---
+2025-08-04 13:05:33 | INFO     | --- Dataset Creation ---
+2025-08-04 13:05:33 | INFO     | Good patches in dataset: 0
+2025-08-04 13:05:33 | INFO     | Bad patches in dataset: 99
+2025-08-04 13:05:33 | INFO     | Tensor shape: (99, 96, 96, 1)
+2025-08-04 13:05:33 | INFO     | Save directory: data/output/example_dataset
+2025-08-04 13:05:33 | INFO     | ✓ Capture 2 completed successfully
+2025-08-04 13:05:33 | INFO     |   Good patches: 0, Bad patches: 99
+2025-08-04 13:05:33 | INFO     | Processing time: 5.99 seconds
+2025-08-04 13:05:33 | INFO     | ============================================================
+2025-08-04 13:05:33 | INFO     | SESSION SUMMARY
+2025-08-04 13:05:33 | INFO     | ============================================================
+2025-08-04 13:05:33 | INFO     | Total folders processed: 2
+2025-08-04 13:05:33 | INFO     | Successful captures: 2
+2025-08-04 13:05:33 | INFO     | Failed captures: 0
+2025-08-04 13:05:33 | INFO     | Success rate: 100.0%
+2025-08-04 13:05:33 | INFO     | Total good patches labeled: 6
+2025-08-04 13:05:33 | INFO     | Total bad patches labeled: 623
+2025-08-04 13:05:33 | INFO     | Total patches labeled: 629
+2025-08-04 13:05:33 | INFO     | Overall good patch percentage: 1.0%
+2025-08-04 13:05:33 | INFO     | Total session time: 0.4 minutes
+2025-08-04 13:05:33 | INFO     | Average time per capture: 10.7 seconds
+2025-08-04 13:05:33 | INFO     | ================================================================================
+2025-08-04 13:05:33 | INFO     | DATA LABELING SESSION COMPLETED
+2025-08-04 13:05:33 | INFO     | Total session duration: 22s
+2025-08-04 13:05:33 | INFO     | ================================================================================
