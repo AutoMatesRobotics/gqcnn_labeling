@@ -12,7 +12,8 @@ from autolab_core import CameraIntrinsics
 def main():
     # Parameters
     dataset_name = "example_dataset"
-    root_dir = Path("data/input/example_captures")
+    input_folder = "example_captures"
+    root_dir = Path(f"data/input/{input_folder}")
     save_dir = Path(f"data/output/{dataset_name}")
     patch_size = 96
     stride = 10
