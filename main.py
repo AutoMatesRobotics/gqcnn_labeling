@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 import time
+import argparse
 from utils.preprocessing import prepare_patches
 from utils.labeling import labeling_session, extract_patches_by_centers
 from utils.exporting import create_labeled_patches_dataset
@@ -10,13 +11,25 @@ from utils.logger import create_logger
 from autolab_core import CameraIntrinsics
 
 def main():
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='GQ-CNN Data Labeling Tool')
+    parser.add_argument('input_folder', nargs='?', default='example_captures',
+                       help='Input folder name (default: example_captures)')
+    parser.add_argument('output_folder', nargs='?', default='example_dataset',
+                       help='Output dataset name (default: example_dataset)')
+    parser.add_argument('--no_rgb', action='store_true',
+                       help='Disable RGB color image background (use depth visualization)')
+    
+    args = parser.parse_args()
+    
     # Parameters
-    dataset_name = "example_dataset"
-    input_folder = "example_captures"
+    dataset_name = args.output_folder
+    input_folder = args.input_folder
     root_dir = Path(f"data/input/{input_folder}")
     save_dir = Path(f"data/output/{dataset_name}")
     patch_size = 96
     stride = 10
+    use_rgb = not args.no_rgb
 
     # Create logger for this session
     log_dir = save_dir / "log"
@@ -25,10 +38,13 @@ def main():
     try:
         # Log session parameters
         logger.log_info(f"Session parameters:")
+        logger.log_info(f"  Input folder: {input_folder}")
+        logger.log_info(f"  Dataset name: {dataset_name}")
         logger.log_info(f"  Root directory: {root_dir}")
         logger.log_info(f"  Save directory: {save_dir}")
         logger.log_info(f"  Patch size: {patch_size}")
         logger.log_info(f"  Stride: {stride}")
+        logger.log_info(f"  Use RGB background: {use_rgb}")
         
         # Count total folders to process
         folders = [f for f in root_dir.iterdir() if f.is_dir()]
@@ -49,12 +65,16 @@ def main():
             if folder.is_dir():
                 depth_file_path = folder / "depth_0.npy"
                 camera_intr_path = folder / "zivid.intr"
-                color_file_path = folder / "color_0.png"
+                color_file_path = folder / "color_0.png" if use_rgb else None
                 
                 # Check if required files exist
                 if depth_file_path.exists() and camera_intr_path.exists():
                     logger.log_capture_start(index, folder.name)
                     logger.log_capture_files(depth_file_path, camera_intr_path)
+                    
+                    # color file status
+                    if not use_rgb:
+                            color_file_path = None
 
                     try:
                         # Stage 1: Preparing Patches From Scene
@@ -70,7 +90,7 @@ def main():
                             patch_size, stride, len(patches), raw_depth_clean.shape
                         )
                         
-                        # Log depth preprocessing info (you may need to modify prepare_patches to return this info)
+                        # Log depth preprocessing info
                         depth_data = np.load(depth_file_path)
                         original_range = (depth_data.min(), depth_data.max())
                         cleaned_range = (raw_depth_clean.min(), raw_depth_clean.max())
