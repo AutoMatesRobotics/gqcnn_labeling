@@ -63,19 +63,30 @@ gqcnn_labeling/
 1. Clone the repository:
 ```bash
 git clone https://github.com/AutoMatesRobotics/gqcnn_labeling
-cd gqcnn_labeling
 ```
 
-2. Install dependencies:
+2. Create and activate a virtual environment:
+```bash
+cd gqcnn_labeling
+python -m venv venv
+
+# Activate the virtual environment:
+# On Linux/macOS:
+source venv/bin/activate
+
+# On Windows (CMD):
+venv\Scripts\activate
+
+# On Windows (PowerShell):
+venv\Scripts\Activate.ps1
+```
+
+
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Prepare your data structure:
-```bash
-mkdir -p data/input/example_captures
-# Add your capture folders with depth_0.npy, color_o.png and zivid.intr files
-```
 
 ## Usage
 
