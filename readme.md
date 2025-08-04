@@ -9,6 +9,8 @@ This tool provides an end-to-end pipeline for creating labeled grasp datasets fr
 ## Features
 
 - **Interactive Labeling Interface**: OpenCV-based GUI for drawing object boundaries and selecting grasp points
+- **RGB/Depth Background Options**: Use color images or depth visualization as labeling background
+- **Command Line Interface**: Flexible CLI with configurable input/output folders and options
 - **Patch Extraction**: Automated extraction of depth patches with configurable size and stride
 - **Comprehensive Logging**: Detailed session logs with timestamps, user interactions, and performance metrics
 - **GQ-CNN Compatible Output**: Generates tensor files compatible with GQ-CNN training pipelines
@@ -47,58 +49,71 @@ gqcnn_labeling/
 │   ├── loading.py                    # Tensor loading utilities
 │   └── logger.py                     # Comprehensive logging system
 ├── main.py                           # Main pipeline script
-├── requirements.txt                           # requirements
 └── README.md
 ```
 
 ## Installation
 
-## Requirements
+### Requirements
 
 - Python 3.7+
-- NumPy
-- SciPy
-- Matplotlib
-- autolab_core (for camera intrinsics and depth image handling)
-- cv2 (OpenCV)
 
-## Installation
+### Setup
 
-1. Create and activate virtualenv:
-
+1. Clone the repository:
 ```bash
+git clone https://github.com/AutoMatesRobotics/gqcnn_labeling
 cd gqcnn_labeling
-python -m venv venv
-
-# Activate the virtual environment:
-# On Linux/macOS:
-source venv/bin/activate
-
-# On Windows (CMD):
-venv\Scripts\activate
-
-# On Windows (PowerShell):
-venv\Scripts\Activate.ps1
 ```
 
 2. Install dependencies:
-
 ```bash
 pip install -r requirements.txt
+```
+
+3. Prepare your data structure:
+```bash
+mkdir -p data/input/example_captures
+# Add your capture folders with depth_0.npy, color_o.png and zivid.intr files
 ```
 
 ## Usage
 
 ### Basic Usage
 
-1. **Prepare Input Data**: Place a folder of your depth captures in `data/input/` with the required files:
-   - `depth_0.npy`: Depth image as numpy array
-   - `zivid.intr`: Camera intrinsics file
+1. **Prepare Input Data**: Place your depth captures in `data/input/` with the required files:
+   - `depth_0.npy`: Depth image as numpy array (required)
+   - `zivid.intr`: Camera intrinsics file (required)  
+   - `color_0.png`: RGB image for labeling background (optional)
 
 2. **Run the Labeling Pipeline**:
-```bash
-python main.py
-```
+
+   **Default usage** (processes `data/input/example_captures/` → `data/output/example_dataset/`):
+   ```bash
+   python main.py
+   ```
+
+   **Specify input and output** (processes `data/input/my_captures/` → `data/output/my_dataset/`):
+   ```bash
+   python main.py my_captures my_dataset
+   ```
+
+   **Disable RGB background** (uses depth visualization instead of color images):
+   ```bash
+   python main.py my_captures my_dataset --no_rgb
+   ```
+
+   **Get help**:
+   ```bash
+   python main.py --help
+   ```
+
+**CLI Arguments:**
+- `input_folder` (optional): Name of folder in `data/input/` containing your captures
+- `output_folder` (optional): Name for output dataset in `data/output/`
+- `--no_rgb`: Disables color image backgrounds, uses depth colormap instead
+
+**Default behavior:** Uses RGB color images as labeling background when `color_0.png` exists, falls back to depth visualization if missing.
 
 3. **Interactive Labeling Process**:
 
@@ -121,11 +136,9 @@ python main.py
 
 ### Configuration
 
-Edit the parameters in `main.py`:
+You can edit these parameters in `main.py`:
 
 ```python
-dataset_name = "your_dataset_name"           # Output dataset name
-root_dir = Path("data/input/your_captures")  # Input directory
 patch_size = 96                              # Patch size (96x96 pixels)
 stride = 10                                  # Patch extraction stride (step size)
 ```
@@ -137,8 +150,6 @@ stride = 10                                  # Patch extraction stride (step siz
 from utils.logger import create_logger
 
 logger = create_logger("custom_dataset", log_dir="custom_logs")
-# Then you can use logger throughout your pipeline
-logger.log_info("This is an example log record")
 ```
 
 #### Loading Labeled Tensors
